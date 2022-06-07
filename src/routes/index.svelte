@@ -1,7 +1,16 @@
 <script>
+  import Navbar from '@components/Navbar.svelte';
+  import { session } from '$app/stores';
+
+  $: isUserAuthenticated = $session.role === 'authenticated' ?? false;
 </script>
 
 <div>
-  have an account? <a href="/login">Log in</a>
-  Need an account? <a href="/signup">Sign up</a>
+  <Navbar {isUserAuthenticated} />
+  <div>
+    <div>
+      <h1>Categories</h1>
+    </div>
+    <div>stuff goes here</div>
+  </div>
 </div>

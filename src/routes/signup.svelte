@@ -4,6 +4,7 @@
   import * as yup from 'yup';
   import { Input, Field, Row, Col } from 'svelte-chota';
   import { session } from '$app/stores';
+  import { goto } from '$app/navigation';
 
   import supabase from '$lib/db';
 
@@ -17,9 +18,10 @@
       password
     });
     if (error) console.warn(error);
-    console.log(user);
-    console.log(sesh);
-    $session = sesh;
+    if (user) {
+      $session = user;
+      goto('/');
+    }
   }
 
   const schema = yup.object({
